@@ -30,17 +30,16 @@ jobs:
       #  run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        uses: hannut91/aws-cli@1.18.43
+      - name: createBuild
+        run: |
+          yarn install
+          yarn build
+      - name: S3 Sync
+        uses: giboow/action-aws-cli@v1
         with:
-          args: --version
+          args: s3 sync --delete --acl public-read build/ s3://frontend-821158510506/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
-        #run: |
-          # apt-get install awscli -y
-          # yarn install
-          # yarn build
-          # echo AWS_ACCESS_KEY_ID
-          # aws s3 ls
+
