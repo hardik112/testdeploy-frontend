@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Har Har Mahadev, Need to check for S3 Public access
+          Har Har Mahadev, checking
         </p>
         <a
           className="App-link"
